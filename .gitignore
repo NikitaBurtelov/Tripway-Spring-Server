@@ -4,6 +4,20 @@
 # Log file
 *.log
 
+# IntelliJ IDEA
+*.iml
+*.idea
+**/target
+**/src/main/resources
+.classpath
+.factorypath
+.project
+.settings
+*.settings
+*.classpath
+*.factorypath
+*.project
+
 # BlueJ files
 *.ctxt
 
