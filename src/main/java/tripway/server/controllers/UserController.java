@@ -6,10 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tripway.server.models.User;
-import tripway.server.service.users.UserService;
 import tripway.server.service.users.UserServiceImpl;
-
-import javax.validation.Valid;
 
 import java.util.List;
 
@@ -23,8 +20,8 @@ public class UserController {
     private UserServiceImpl userService;
 
     @Autowired
-    public UserServiceImpl getUserService() {
-        return userService;
+    public void setUserService(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/user/test")
@@ -33,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUserId(@PathVariable Long id) {
+    public ResponseEntity<User> getUserId(@PathVariable Long id) { //TODO token
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -53,18 +50,18 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<User> saveUser(@RequestBody @Valid User user) {
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        userService.saveUser(new User());
+        userService.saveUser(user);
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> removeUser(@PathVariable @Valid Long id) {
+    public ResponseEntity<User> removeUser(@PathVariable Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -78,7 +75,7 @@ public class UserController {
     }
 
     @PutMapping(value = "user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateUser(@RequestBody @Valid User user) {
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

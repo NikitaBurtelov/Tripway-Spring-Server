@@ -1,9 +1,6 @@
 package tripway.server.service.trips;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import tripway.server.models.User;
-import tripway.server.repository.UserRepository;
+import org.apache.catalina.User;
 
 /**
  * @author Nikita Burtelov

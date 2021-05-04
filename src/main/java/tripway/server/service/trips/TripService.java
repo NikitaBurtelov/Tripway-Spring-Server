@@ -1,6 +1,7 @@
 package tripway.server.service.trips;
 
-import tripway.server.models.User;
+
+import org.apache.catalina.User;
 
 /**
  * @author Nikita Burtelov
